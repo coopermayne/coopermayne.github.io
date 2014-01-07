@@ -3,90 +3,54 @@
   <title>http://localhost:3000/resume </title>
   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
   <style type="text/css">
+    body {
+      text-align: center;
+    }
     .section {
       font-weight: bold;
+    }
+    pre {
+      border:none !important;
+      display: inline-block;
+      text-align: left;
+      margin-right: 35px;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: green;
     }
   </style>
 </head>
 <body>
+  <div id='containter'>
   <pre class='prettyprint lang-json'>
 {
   <span class='section'>basic_info</span>: {
-    name: 'Cooper Alison-Mayne',
+    name: 'Cooper Mayne',
     age: 26,
+    resume: '<a href='https://drive.google.com/file/d/0B4LQ-SyvZnQydnE2cmQ1bl83dzg/edit?usp=sharing'>resume.pdf</a>'
+    github: '<a href='http://www.github.com/coopermayne'>github.com/coopermayne</a>',
+    linkedin: '<a href='http://www.linkedin.com/in/coopermayne'>linkedin.com/in/coopermayne</a>',
     phone: '1-310-382-7885',
     email: 'coopermayne@gmail.com',
-    github: 'coopermayne.github.com'
   },
-  <span class='section'>skills:</span> {
-    languages: ["Ruby", "Javascript", "HTML", "CSS"],
-    libraries: ["jQuery", "jQuery UI", "Backbone", "Underscore"],
-    frameworks: ["Rails", "Sinatra"],
-    databases: ["MySQL", "MongoDB"]
+  <span class='section'>programming_skills:</span> {
+    languages: ['Ruby', 'JavaScript(CoffeeScript)',
+                'CSS(Sass)', 'HTML(Haml)', 'SQL'],
+    frameworks: ['Rails', 'Sinatra', 'Backbone'],
+    libraries: ['jQuery', 'jQuery UI', 'D3'],
+    testing_frameworks: ['RSpec', 'Capybara', 'Jasmine']
   },
-  <span class='section'>employment_history</span>: [
-    {
-      company: "MOCA",
-      location: "New York, NY",
-      title: "Cool Title",
-      start: '5/12',
-      end: '8/12'
-    },
-    {
-      company: "Center of Urban Real Estate",
-      location: "New York, NY",
-      title: "Research Assistant",
-      start: '8/12',
-      end: '9/12'
-    },
-    {
-      company: "Murdock Theatre",
-      title: "Manager",
-      location: "Witchita, KS",
-      start: '2009',
-      end: '2010'
-    },
-    {
-      company: "Santa Monica Surf School",
-      location: "Santa Monica, CA",
-      title: "Founder",
-      start: '2006',
-      end: '1010'
-    },
-    {
-      company: "Waterworx Dive Center",
-      location: "Bali, Indonesia",
-      title: "Assistant Dive Master",
-      start: '5/06',
-      end: '9/06'
-    },
-    {
-      company: "Morphosis Architects",
-      location: "Santa Monica, CA",
-      title: "Clerical Assistant",
-      start: '6/03',
-      end: '9/04'
-    }
-  ],
-  <span class='section'>education:</span>
-  [
-    {
-      name: "St John's College",
-      type: 'College',
-      major: 'Liberal Arts'
-    },
-    {
-      name: "Santa Monica High School",
-      type: 'High School'
-    }
-  ],
-  <span class='section'>personal_interests:</span>
-  [
-    "Mathematics", "Literature", "Philosophy", "Scuba-diving"
-  ]
+  <span class='section'>projects:</span> {
+    wordweb: '<a href='http://quiet-refuge-5124.herokuapp.com/'>http://quiet-refuge-5124.herokuapp.com/'</a>,
+    partytag: '<a href='http://www.thepartytag.com/'>http://www.thepartytag.com/'</a>
+  }
 }
   </pre>
-
   <img src='me.png'>
+  </div>
 </body>
 </html>
