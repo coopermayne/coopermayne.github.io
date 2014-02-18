@@ -1,22 +1,67 @@
-var projects, about, contact, current, foldNumber, foldArray, counter, d, destination, i, defaultSpeed;
+var projects, about, contact, current, foldNumber, foldArray, counter, d, destination, i, defaultSpeed, p_clone, c_clone, a_clone;
+
+$(document).ready(function() {
+  //init slideshow;
+
+  //set up listeners
+  $(window).keydown(function(e) {
+    if (performance.now() - counter < 850) {return} //prevent clogging 
+
+    counter = performance.now()
+    i = foldArray.indexOf(current)
+
+    if (e.keyCode == 37 && i!==0 ) { //left arrow
+      cycle(foldArray[i-1]);
+    } else if (e.keyCode == 39 && i !== 2) { //right arrow
+      cycle(foldArray[i+1]);
+    }
+  })
+
+  foldNumber = 82.7
+  options = { 
+    vPanels: 8,
+    touchEnabled: false,
+    shadingIntesity: .9
+  }
+
+  projects = new OriDomi('.projects', options);
+  about = new OriDomi('.about', options);
+  contact= new OriDomi('.contact', options);
+
+  foldArray = [projects, about, contact];
+
+  //set up initial focus
+  contact.setSpeed(0).accordion(foldNumber, 'right', resetSpeeds);
+  projects.setSpeed(0).accordion(foldNumber, 'left', function(){
+    $('.xslideshow').cycle({
+      speed: 600,
+      manualSpeed: 100,
+      timeout: 5000
+    });
+  });
+  //showHandCursor();
+  resetNav();
+
+  current = about; //we are starting on the middle panel... use this var to keep track...
+
+});
 
 function resetNav () {
   console.log('reset nav');
-  $('a').on('mouseover', function(e){console.log(e)});
-  //$('.projects').on('click', function(e) {
-    //cycle(projects);
-    //e.stopPropagation();
-  //});
+  $('.projects').on('click', function(e) {
+    cycle(projects);
+    e.stopPropagation();
+  });
 
-  //$('.about').on('click', function(e) {
-    //cycle(about);
-    //e.stopPropagation();
-  //});
+  $('.about').on('click', function(e) {
+    cycle(about);
+    e.stopPropagation();
+  });
 
-  //$('.contact').on('click', function(e) {
-    //cycle(contact);
-    //e.stopPropagation();
-  //});
+  $('.contact').on('click', function(e) {
+    cycle(contact);
+    e.stopPropagation();
+  });
 };
 
 
@@ -55,49 +100,10 @@ function cycle (destination) {
   destination.accordion(0);
 
   current.setSpeed(500).accordion(foldNumber, direction, resetSpeeds); //speed up the folding so it syncs with unfolding
+
+  //set the current sections z-index so links work!
+
+  $('.' + current.el.id).removeClass('toppy');
   current = destination;
-  //showHandCursor();
+  $('.' + current.el.id).addClass('toppy');
 }
-
-$(document).ready(function() {
-  //init slideshow;
-  //$('#slideshow').cycle({
-    //speed: 600,
-    //manualSpeed: 100
-  //});
-
-  //set up listeners
-  $(window).keydown(function(e) {
-    if (performance.now() - counter < 850) {return} //prevent clogging 
-
-    counter = performance.now()
-    i = foldArray.indexOf(current)
-
-    if (e.keyCode == 37 && i!==0 ) { //left arrow
-      cycle(foldArray[i-1]);
-    } else if (e.keyCode == 39 && i !== 2) { //right arrow
-      cycle(foldArray[i+1]);
-    }
-  })
-
-  foldNumber = 82.7
-  options = { 
-    vPanels: 8,
-    touchEnabled: false,
-    shadingIntesity: .9
-  }
-
-  projects = new OriDomi(document.getElementsByClassName('projects')[0], options);
-  about = new OriDomi(document.getElementsByClassName('about')[0], options);
-  contact= new OriDomi(document.getElementsByClassName('contact')[0], options);
-
-  foldArray = [projects, about, contact];
-
-  //set up initial focus
-  contact.setSpeed(0).accordion(foldNumber, 'right', resetSpeeds);
-  projects.setSpeed(0).accordion(foldNumber);
-  //showHandCursor();
-  resetNav();
-
-  current = about; //we are starting on the middle panel... use this var to keep track...
-});
