@@ -22,7 +22,7 @@ $(document).ready(function() {
   setNavTriggers();
   setHoverEvents();
 
-  $('.cover').on('mouseover', function() {$('.cover').fadeIn(300)})
+  $('.cover').on('mouseover', function() {$('.cover').show()})
 });
 
 function setNavTriggers() {
@@ -60,12 +60,13 @@ function setHoverEvents () {
   $('.paper').on('mouseover', function(e) {
     var elId = e.currentTarget.id;
     if (current.el.id !== elId) {
-      $('#'+elId+' .cover').fadeIn(300)
+      $('.cover').hide()
+      $('#'+elId+' .cover').show()
     }
   })
   $('.paper').on('mouseout', function(e) {
     var elId = e.currentTarget.id;
-    $('#'+elId+' .cover').fadeOut(250)
+    $('#'+elId+' .cover').hide()
   })
 }
 
