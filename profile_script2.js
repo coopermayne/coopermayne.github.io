@@ -1,9 +1,47 @@
 var projects, about, contact, current, foldNumber, foldArray, counter, d, destination, i, defaultSpeed, p_clone, c_clone, a_clone;
 
 $(document).ready(function() {
-  //init slideshow;
 
-  //set up arrow key
+  foldNumber = 82.7
+  options = { 
+    vPanels: 8,
+    touchEnabled: false,
+    shadingIntesity: .9
+  }
+  projects = new OriDomi('.projects', options);
+  about = new OriDomi('.about', options);
+  contact= new OriDomi('.contact', options);
+
+  foldArray = [projects, about, contact];
+  current = about; //we are starting on the middle panel... use this var to keep track...
+
+  //set up initial focus
+  contact.setSpeed(0).accordion(foldNumber, 'right', resetSpeeds);
+  projects.setSpeed(0).accordion(foldNumber, 'left')
+
+  setNavTriggers();
+  setHoverEvents();
+
+  $('.cover').on('mouseover', function() {$('.cover').fadeIn(300)})
+});
+
+function setNavTriggers() {
+  console.log('set nav triggers');
+
+  //click folded divs to cyle to them
+  $('.projects').on('click', function(e) {
+    cycle(projects);
+    e.stopPropagation();
+  });
+  $('.about').on('click', function(e) {
+    cycle(about);
+    e.stopPropagation();
+  });
+  $('.contact').on('click', function(e) {
+    cycle(contact);
+    e.stopPropagation();
+  });
+
   $(window).keydown(function(e) {
     if (performance.now() - counter < 850) {return} //prevent clogging 
 
@@ -16,84 +54,20 @@ $(document).ready(function() {
       cycle(foldArray[i+1]);
     }
   })
-
-  foldNumber = 82.7
-  options = { 
-    vPanels: 8,
-    touchEnabled: false,
-    shadingIntesity: .9
-  }
-
-  projects = new OriDomi('.projects', options);
-  about = new OriDomi('.about', options);
-  contact= new OriDomi('.contact', options);
-
-  foldArray = [projects, about, contact];
-
-  //set up initial focus
-  contact.setSpeed(0).accordion(foldNumber, 'right', resetSpeeds);
-  projects.setSpeed(0).accordion(foldNumber, 'left', function(){
-    $('.xslideshow').cycle({
-      speed: 600,
-      manualSpeed: 100,
-      timeout: 5000
-    });
-  });
-  resetNav();
-  current = about; //we are starting on the middle panel... use this var to keep track...
-
-});
-
-function resetNav () {
-  console.log('reset nav');
-  //click folded divs to cyle to them
-  $('.projects').on('click', function(e) {
-    $('.projects').removeClass('highlighed');
-    cycle(projects);
-    e.stopPropagation();
-  });
-
-  $('.about').on('click', function(e) {
-    $('.about').removeClass('highlighed');
-    cycle(about);
-    e.stopPropagation();
-  });
-
-  $('.contact').on('click', function(e) {
-    $('.contact').removeClass('highlighed');
-    cycle(contact);
-    e.stopPropagation();
-  });
-
-  //hightlight and show hand when over folded div
-  $('.contact').on('mouseover', function(e) {
-    if (current!==contact) {
-      $('.contact').addClass('highlighed');
-    }
-  });
-  $('.contact').on('mouseout', function(e) {
-    $('.contact').removeClass('highlighed');
-  });
-
-  $('.about').on('mouseover', function(e) {
-    if (current!==about) {
-      $('.about').addClass('highlighed');
-    }
-  });
-  $('.about').on('mouseout', function(e) {
-    $('.about').removeClass('highlighed');
-  });
-
-  $('.projects').on('mouseover', function(e) {
-    if (current!==projects) {
-      $('.projects').addClass('highlighed');
-    }
-  });
-  $('.projects').on('mouseout', function(e) {
-    $('.projects').removeClass('highlighed');
-  });
 };
 
+function setHoverEvents () {
+  $('.paper').on('mouseover', function(e) {
+    var elId = e.currentTarget.id;
+    if (current.el.id !== elId) {
+      $('#'+elId+' .cover').fadeIn(300)
+    }
+  })
+  $('.paper').on('mouseout', function(e) {
+    var elId = e.currentTarget.id;
+    $('#'+elId+' .cover').fadeOut(250)
+  })
+}
 
 function resetSpeeds () {
   defaultSpeed = 700
@@ -103,7 +77,7 @@ function resetSpeeds () {
 }
 
 function cycle (destination) {
-  console.log([foldArray.indexOf(current), foldArray.indexOf(destination)])
+  $('.cover').hide()
 
   if (Math.abs(foldArray.indexOf(destination) - foldArray.indexOf(current)) >1 ) {   //need multiple animations
     cycle(foldArray[1])
@@ -125,10 +99,10 @@ function cycle (destination) {
   destination.accordion(0);
 
   current.setSpeed(500).accordion(foldNumber, direction, resetSpeeds); //speed up the folding so it syncs with unfolding
-
   //set the current sections z-index so links work!
 
   $('.' + current.el.id).removeClass('toppy');
   current = destination;
   $('.' + current.el.id).addClass('toppy');
+
 }
