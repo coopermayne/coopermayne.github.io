@@ -97,3 +97,7 @@ img {
 .toppy {
   z-index: 1000;
 }
+
+.highlighed #heading{
+  background-color: grey;
+}

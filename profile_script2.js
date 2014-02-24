@@ -3,13 +3,13 @@ var projects, about, contact, current, foldNumber, foldArray, counter, d, destin
 $(document).ready(function() {
   //init slideshow;
 
-  //set up listeners
+  //set up arrow key
   $(window).keydown(function(e) {
     if (performance.now() - counter < 850) {return} //prevent clogging 
 
     counter = performance.now()
-    i = foldArray.indexOf(current)
 
+    i = foldArray.indexOf(current)
     if (e.keyCode == 37 && i!==0 ) { //left arrow
       cycle(foldArray[i-1]);
     } else if (e.keyCode == 39 && i !== 2) { //right arrow
@@ -39,28 +39,58 @@ $(document).ready(function() {
       timeout: 5000
     });
   });
-  //showHandCursor();
   resetNav();
-
   current = about; //we are starting on the middle panel... use this var to keep track...
 
 });
 
 function resetNav () {
   console.log('reset nav');
+  //click folded divs to cyle to them
   $('.projects').on('click', function(e) {
+    $('.projects').removeClass('highlighed');
     cycle(projects);
     e.stopPropagation();
   });
 
   $('.about').on('click', function(e) {
+    $('.about').removeClass('highlighed');
     cycle(about);
     e.stopPropagation();
   });
 
   $('.contact').on('click', function(e) {
+    $('.contact').removeClass('highlighed');
     cycle(contact);
     e.stopPropagation();
+  });
+
+  //hightlight and show hand when over folded div
+  $('.contact').on('mouseover', function(e) {
+    if (current!==contact) {
+      $('.contact').addClass('highlighed');
+    }
+  });
+  $('.contact').on('mouseout', function(e) {
+    $('.contact').removeClass('highlighed');
+  });
+
+  $('.about').on('mouseover', function(e) {
+    if (current!==about) {
+      $('.about').addClass('highlighed');
+    }
+  });
+  $('.about').on('mouseout', function(e) {
+    $('.about').removeClass('highlighed');
+  });
+
+  $('.projects').on('mouseover', function(e) {
+    if (current!==projects) {
+      $('.projects').addClass('highlighed');
+    }
+  });
+  $('.projects').on('mouseout', function(e) {
+    $('.projects').removeClass('highlighed');
   });
 };
 
@@ -71,11 +101,6 @@ function resetSpeeds () {
   projects.setSpeed(defaultSpeed);
   about.setSpeed(defaultSpeed);
 }
-
-//function showHandCursor () {
-  ////show hand cursor on expandable items
-  //console.log(foldArray.indexOf(current));
-//}
 
 function cycle (destination) {
   console.log([foldArray.indexOf(current), foldArray.indexOf(destination)])
