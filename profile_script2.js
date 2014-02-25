@@ -1,4 +1,4 @@
-var projects, about, contact, current, foldNumber, foldArray, counter, d, destination, i, defaultSpeed, p_clone, c_clone, a_clone;
+var projects, about, contact, current, foldNumber, sections, counter, d, destination, i, defaultSpeed, p_clone, c_clone, a_clone;
 
 $(document).ready(function() {
 
@@ -12,7 +12,7 @@ $(document).ready(function() {
   about = new OriDomi('.about', options);
   contact= new OriDomi('.contact', options);
 
-  foldArray = [projects, about, contact];
+  sections = [projects, about, contact];
   current = about; //we are starting on the middle panel... use this var to keep track...
 
   //set up initial focus
@@ -22,13 +22,9 @@ $(document).ready(function() {
   setNavTriggers();
   setHoverEvents();
 
-  $('.cover').on('mouseover', function() {$('.cover').show()})
 });
 
 function setNavTriggers() {
-  console.log('set nav triggers');
-
-  //click folded divs to cyle to them
   $('.projects').on('click', function(e) {
     cycle(projects);
     e.stopPropagation();
@@ -47,11 +43,11 @@ function setNavTriggers() {
 
     counter = performance.now()
 
-    i = foldArray.indexOf(current)
+    i = sections.indexOf(current)
     if (e.keyCode == 37 && i!==0 ) { //left arrow
-      cycle(foldArray[i-1]);
+      cycle(sections[i-1]);
     } else if (e.keyCode == 39 && i !== 2) { //right arrow
-      cycle(foldArray[i+1]);
+      cycle(sections[i+1]);
     }
   })
 };
@@ -60,13 +56,13 @@ function setHoverEvents () {
   $('.paper').on('mouseover', function(e) {
     var elId = e.currentTarget.id;
     if (current.el.id !== elId) {
-      $('.cover').hide()
-      $('#'+elId+' .cover').show()
+      $('.highlight').hide()
+      $('#'+elId+' .highlight').show()
     }
   })
   $('.paper').on('mouseout', function(e) {
     var elId = e.currentTarget.id;
-    $('#'+elId+' .cover').hide()
+    $('#'+elId+' .highlight').hide()
   })
 }
 
@@ -78,30 +74,28 @@ function resetSpeeds () {
 }
 
 function cycle (destination) {
-  $('.cover').hide()
+  if (destination==current) return;
 
-  if (Math.abs(foldArray.indexOf(destination) - foldArray.indexOf(current)) >1 ) {   //need multiple animations
-    cycle(foldArray[1])
+  $('.highlight').hide()
+  var dest_i = sections.indexOf(destination)
+  var curr_i = sections.indexOf(current)
+  var diff = Math.abs(dest_i - curr_i)
+
+  if (diff > 1) {   //need multiple animations
+    cycle(sections[1])
     setTimeout( function() { cycle(destination) }, 850)
     return
   }
 
-  if (destination==current) {
-    console.log('DOING NOTHING');
-    return;
-  }
-
-  if (foldArray.indexOf(destination) < foldArray.indexOf(current)) {
-    direction = "right";
-  } else {
-    direction = "left";
-  }
+  direction = dest_i<curr_i ? 'right' : 'left'
 
   destination.accordion(0);
 
-  current.setSpeed(500).accordion(foldNumber, direction, resetSpeeds); //speed up the folding so it syncs with unfolding
-  //set the current sections z-index so links work!
-
+  //speed up the folding so it syncs with unfolding
+  current.setSpeed(500)
+         .accordion(foldNumber, direction, resetSpeeds);
+  
+  //put current on top so links are clickable
   $('.' + current.el.id).removeClass('toppy');
   current = destination;
   $('.' + current.el.id).addClass('toppy');
