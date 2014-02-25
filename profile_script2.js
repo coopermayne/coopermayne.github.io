@@ -99,5 +99,4 @@ function cycle (destination) {
   $('.' + current.el.id).removeClass('toppy');
   current = destination;
   $('.' + current.el.id).addClass('toppy');
-
 }

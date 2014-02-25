@@ -79,10 +79,6 @@ img {
   width: 100%;
 }
 
-.xslideshow {
-  width: 100%;
-}
-
 .about{
   left: 10%;
 }
@@ -96,10 +92,6 @@ img {
 
 .toppy {
   z-index: 1000;
-}
-
-.highlighed #heading{
-  background-color: grey;
 }
 
 .highlight {
