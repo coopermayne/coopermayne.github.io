@@ -2,6 +2,14 @@ var projects, about, contact, current, foldNumber, sections, counter, d, destina
 
 $(document).ready(function() {
 
+  initiateOridomi();
+
+  setNavTriggers();
+  setHoverEvents();
+
+});
+
+function initiateOridomi() {
   foldNumber = 82.7
   options = { 
     vPanels: 8,
@@ -18,11 +26,7 @@ $(document).ready(function() {
   //set up initial focus
   contact.setSpeed(0).accordion(foldNumber, 'right', resetSpeeds);
   projects.setSpeed(0).accordion(foldNumber, 'left')
-
-  setNavTriggers();
-  setHoverEvents();
-
-});
+}
 
 function setNavTriggers() {
   $('.projects').on('click', function(e) {
