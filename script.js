@@ -53,18 +53,18 @@ $(document).ready( function() {
       p = l.position();
       coop_p = $('img')
       brain_position = {};
-      brain_position.left = coop_p.position().left + coop_p.width()/3
+      brain_position.left = coop_p.position().left + coop_p.width()/10
       brain_position.top = coop_p.position().top + coop_p.height()/20
 
       var init = {}
       init.x = brain_position.left - p.left;
       init.y = brain_position.top - p.top;
       l
-      .transition({ x: init.x, y: init.y, scale: 0}, 0)
-      .transition({ x: init.x+1, y: init.y+1}, 3000)
-      .transition({ x: distance(), y: distance(), scale: scale()*3}, 2000)
-      .transition({ x: distance(), y: distance(), scale: scale()}, time(i))
-      .transition({ x: 0, y:0, scale: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
+      .velocity({ left: init.x, top: init.y}, 0)
+      .velocity({ left: init.x}, 3000)
+      .velocity({ left: distance(), top: distance(), opacity: 0.5}, 2000)
+      .velocity({ left: distance(), top: distance(), opacity: 0.2}, time(i))
+      .velocity({ left: 0, top:0, scale: 1, opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
     }
   }
 

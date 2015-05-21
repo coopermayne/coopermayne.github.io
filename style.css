@@ -12,3 +12,8 @@ body {
   height: 10%;
   z-index: 100;
 }
+
+span {
+  position: relative;
+  opacity: 0
+}
