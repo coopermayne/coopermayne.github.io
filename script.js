@@ -1,4 +1,4 @@
-$(document).ready( function() {
+$(window).load( function() {
   var test_els = $('h1, h2, p');
 
   $.each(test_els, function(i, v) {
@@ -54,7 +54,7 @@ $(document).ready( function() {
     init.x = brain_position.left - p.left;
     init.y = brain_position.top - p.top;
     l
-    .transition({ x: init.x, y: init.y, scale: 0.5}, 0)
+    .transition({ x: init.x, y: init.y, scale: 0}, 0)
     .transition({ x: init.x+1, y: init.y+1}, 3000)
     .transition({ x: distance(), y: distance(), scale: scale()*3}, 2000)
     .transition({ x: distance(), y: distance(), scale: scale()}, time(i))
