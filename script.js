@@ -2,7 +2,7 @@ $(document).ready( function() {
 
   if (window.mobilecheck()) {
     $('body').css('max-width', '1000px')
-    $('body').width($(window).width())
+    $('body').width($(window).width()-20)
   } else {
 
     var test_els = $('h1, h2, p');
