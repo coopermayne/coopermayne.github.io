@@ -62,17 +62,95 @@ $(document).ready( function() {
     var scale = function() {
       return Math.random()*2
     }
-
-    for (var i = 0, len = els.length; i < len; i++) {
-      var l = $(els[i]);
-      l
-      .velocity({ left: distance(), top: distance()}, 1500)
-      .velocity({ left: distance()*2, top: distance()*2, opacity: Math.random()}, 3000+Math.random()*3000)
-      .velocity({ left: distance(), top: distance()}, 3000+Math.random()*3000)
-      .velocity({ left: distance(), top: distance()}, 1000+Math.random()*1000)
-      .velocity({ left: distance(), top: distance()}, time(i))
-      .velocity({ left: 0, top:0, scale: 1, opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
+    var pickEasing = function() {
+      return [10,1]
     }
+
+    els
+      .velocity({
+        left: [ 
+          function() { return distance()*2 },
+          function() { return distance()*2 }],
+        top: [
+          function() { return distance()*2 },
+          function() { return distance()*2 }],
+        opacity: [
+          function() { return Math.random() },
+          0 ]
+      },{
+        delay: 1000,
+        duration: 3000,
+        easing: 'linear'
+      })
+      .velocity({
+        left:  function() { return distance() },
+        top: function() { return distance() },
+      },{
+        duration: 1000,
+        easing: pickEasing()
+      })
+      .velocity({
+        left:  function() { return distance()/2 },
+        top: function() { return distance()/2 },
+      },{
+        delay: 300,
+        duration: 500,
+        easing: pickEasing()
+      })
+      .velocity({
+        left:  function() { return distance()/4 },
+        top: function() { return distance()/4 },
+      },{
+        delay: 300,
+        duration: 500,
+        easing: pickEasing()
+      })
+      .velocity({
+        left:  function() { return distance()/10 },
+        top: function() { return distance()/10 },
+      },{
+        delay: 300,
+        duration: 500,
+        easing: pickEasing()
+      })
+      .velocity({
+        left: 0,
+        top:0,
+        scale: 1,
+        opacity: 1
+      }, {
+        delay: 300,
+        duration: 500,
+        easing: pickEasing()
+      })
+
+    //for (var i = 0, len = els.length; i < len; i++) {
+      //var l = $(els[i]);
+      //l
+      //.delay(2000)
+      //.velocity({
+        //left: [ distance()*2, distance()*2],
+        //top: [ distance()*2, distance()*2],
+        //opacity: [ Math.random(), 0 ]},
+        //4000+Math.random()*2000)
+      //.velocity({
+        //left: distance(),
+        //top: distance()},
+        //4000+Math.random()*2000)
+      //.velocity({
+        //left: distance(),
+        //top: distance()},
+        //1000+Math.random()*1000)
+      //.velocity({
+        //left: distance(),
+        //top: distance()},
+        //time(i))
+      //.velocity({
+        //left: 0,
+        //top:0,
+        //scale: 1,
+        //opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
+    //}
   }
 
 });

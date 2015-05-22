@@ -6,9 +6,11 @@ body {
 }
 
 #me {
+  position: fixed;
   bottom: 20px;
   left: 20px;
   height: 10%;
+  z-index: 100;
 }
 
 span {
