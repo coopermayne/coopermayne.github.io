@@ -5,12 +5,12 @@ $(document).ready( function() {
     $('body').width($(window).width())
   } else {
 
-    var test_els = $('h1, h2, p');
+    var els = $('h1, h2, p');
 
-    $.each(test_els, function(i, v) {
+    $.each(els, function(i, v) {
 
-      var test_el = $(v);
-      var html = test_el.html().trim();
+      var el = $(v);
+      var html = el.html().trim();
       var new_html = "";
       var ignore = false
       for (var i = 0, len = html.length; i < len; i++) {
@@ -26,7 +26,7 @@ $(document).ready( function() {
           ignore=false
         }
       }
-      test_el.html(new_html)
+      el.html(new_html)
     } )
 
     var els = $('span');
@@ -62,8 +62,8 @@ $(document).ready( function() {
       l
       .velocity({ left: init.x, top: init.y}, 0)
       .velocity({ left: init.x}, 3000)
-      .velocity({ left: distance(), top: distance(), opacity: 0.5}, 2000)
-      .velocity({ left: distance(), top: distance(), opacity: 0.2}, time(i))
+      .velocity({ left: distance(), top: distance(), opacity: Math.random()}, 1000+Math.random()*1000)
+      .velocity({ left: distance(), top: distance(), opacity: Math.random()}, time(i))
       .velocity({ left: 0, top:0, scale: 1, opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
     }
   }
