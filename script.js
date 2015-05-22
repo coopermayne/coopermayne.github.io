@@ -5,6 +5,21 @@ $(document).ready( function() {
     $('body').width($(window).width())
   } else {
 
+    $('#me').on({
+      mouseenter: function() {
+        $(this)
+        .velocity({
+          rotateZ: "10"
+        },100)
+        .velocity({
+          rotateZ: "-10"
+        },100)
+        .velocity({
+          rotateZ: "deg"
+        },100)
+      }
+    })
+
     var els = $('h1, h2, p');
 
     $.each(els, function(i, v) {
@@ -53,9 +68,9 @@ $(document).ready( function() {
       l
       .velocity({ left: distance(), top: distance()}, 1500)
       .velocity({ left: distance()*2, top: distance()*2, opacity: Math.random()}, 3000+Math.random()*3000)
-      .velocity({ left: distance(), top: distance(), opacity: Math.random()}, 3000+Math.random()*3000)
-      .velocity({ left: distance(), top: distance(), opacity: Math.random()}, 1000+Math.random()*1000)
-      .velocity({ left: distance(), top: distance(), opacity: Math.random()}, time(i))
+      .velocity({ left: distance(), top: distance()}, 3000+Math.random()*3000)
+      .velocity({ left: distance(), top: distance()}, 1000+Math.random()*1000)
+      .velocity({ left: distance(), top: distance()}, time(i))
       .velocity({ left: 0, top:0, scale: 1, opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
     }
   }
