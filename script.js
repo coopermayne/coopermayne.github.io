@@ -50,18 +50,10 @@ $(document).ready( function() {
 
     for (var i = 0, len = els.length; i < len; i++) {
       var l = $(els[i]);
-      p = l.position();
-      coop_p = $('img')
-      brain_position = {};
-      brain_position.left = coop_p.position().left + coop_p.width()/10
-      brain_position.top = coop_p.position().top + coop_p.height()/20
-
-      var init = {}
-      init.x = brain_position.left - p.left;
-      init.y = brain_position.top - p.top;
       l
-      .velocity({ left: init.x, top: init.y}, 0)
-      .velocity({ left: init.x}, 3000)
+      .velocity({ left: distance(), top: distance()}, 1500)
+      .velocity({ left: distance()*2, top: distance()*2, opacity: Math.random()}, 3000+Math.random()*3000)
+      .velocity({ left: distance(), top: distance(), opacity: Math.random()}, 3000+Math.random()*3000)
       .velocity({ left: distance(), top: distance(), opacity: Math.random()}, 1000+Math.random()*1000)
       .velocity({ left: distance(), top: distance(), opacity: Math.random()}, time(i))
       .velocity({ left: 0, top:0, scale: 1, opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
