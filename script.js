@@ -89,64 +89,134 @@ $(document).ready( function() {
     $('.cover') .velocity({
         opacity: 0,
       }, {
-        duration:10000,
-        delay: 500,
+        duration:8000,
+        delay: 1000,
       })
 
-    for (var i = 0, len = els.length; i < len; i++) {
-      var ds = [
-        { x: distance()*4, y: distance()*2 },
-        { x: distance()*3, y: distance()*2 },
-        { x:distance()*2,  y: distance()*1.5 },
-        { x:distance(),    y: distance() },
-        { x: distance()/2, y: distance()/2  }
-      ]
+    var choice = Math.round(Math.random());
+    if (choice == 0) {
+      var pickEasing = function() {
+        return [10,1]
+      }
 
-      $(els[i])
-      .velocity({
-        translateX: [ds[1].x, ds[0].x ],
-        translateY: [ds[1].y, ds[0].y ],
-      },{
-        duration: 1000+Math.random()*5000,
-      })
-
-      .velocity({
-        translateX: [ds[2].x, ds[1].x ],
-        translateY: [ds[2].y, ds[1].y ],
-      },{
-        duration: 1000+Math.random()*5000,
-      })
-
-      .velocity({
-        translateX: [ds[3].x, ds[2].x ],
-        translateY: [ds[3].y, ds[2].y ],
-      }, {
-        duration: 500+Math.random()*1500,
-      })
-
-      .velocity({
-        translateX: [ds[4].x, ds[3].x ],
-        translateY: [ds[4].y, ds[3].y ],
-      }, {
-        duration: time(i),
-      })
-
-      .velocity({
-        translateX: 0,
-        translateY:0,
-      }, {
-        duration: time(i)*2,
-        complete: function(element) {
-          counter++;
-          if (counter == 508) {
-            $(window).resize( function() {
-              $('span')
-                .removeClass('ab')
-                .css({ top: 0, left: 0 })
-            })
+      els
+        .velocity({
+          translateX: [ 
+            function() { return distance()*2 },
+            function() { return distance()*2 }],
+          translateY: [
+            function() { return distance()*2 },
+            function() { return distance()*2 }],
+        },{
+          delay: 1000,
+          duration: 3000,
+          easing: 'linear'
+        })
+        .velocity({
+          translateX:  function() { return distance() },
+          translateY: function() { return distance() },
+        },{
+          duration: 1000,
+          easing: pickEasing()
+        })
+        .velocity({
+          translateX:  function() { return distance()/2 },
+          translateY: function() { return distance()/2 },
+        },{
+          delay: 300,
+          duration: 500,
+          easing: pickEasing()
+        })
+        .velocity({
+          translateX:  function() { return distance()/4 },
+          translateY: function() { return distance()/4 },
+        },{
+          delay: 300,
+          duration: 500,
+          easing: pickEasing()
+        })
+        .velocity({
+          translateX:  function() { return distance()/10 },
+          translateY: function() { return distance()/10 },
+        },{
+          delay: 300,
+          duration: 500,
+          easing: pickEasing()
+        })
+        .velocity({
+          translateX: 0,
+          translateY:0,
+        }, {
+          delay: 300,
+          duration: 500,
+          easing: pickEasing(),
+          complete: function(element) {
+            counter++;
+            if (counter == 508) {
+              $(window).resize( function() {
+                $('span')
+                  .removeClass('ab')
+                  .css({ top: 0, left: 0 })
+              })
+            }
           }
-        }
-      })
+        })
+    } else {
+      for (var i = 0, len = els.length; i < len; i++) {
+        var ds = [
+          { x: distance()*4, y: distance()*2 },
+          { x: distance()*3, y: distance()*2 },
+          { x:distance()*2,  y: distance()*1.5 },
+          { x:distance(),    y: distance() },
+          { x: distance()/2, y: distance()/2  }
+        ]
+
+        $(els[i])
+        .velocity({
+          translateX: [ds[1].x, ds[0].x ],
+          translateY: [ds[1].y, ds[0].y ],
+        },{
+          duration: 1000+Math.random()*5000,
+        })
+
+        .velocity({
+          translateX: [ds[2].x, ds[1].x ],
+          translateY: [ds[2].y, ds[1].y ],
+        },{
+          duration: 1000+Math.random()*5000,
+        })
+
+        .velocity({
+          translateX: [ds[3].x, ds[2].x ],
+          translateY: [ds[3].y, ds[2].y ],
+        }, {
+          duration: 500+Math.random()*1500,
+        })
+
+        .velocity({
+          translateX: [ds[4].x, ds[3].x ],
+          translateY: [ds[4].y, ds[3].y ],
+        }, {
+          duration: time(i),
+        })
+
+        .velocity({
+          translateX: 0,
+          translateY:0,
+        }, {
+          duration: time(i)*2,
+          complete: function(element) {
+            counter++;
+            if (counter == 508) {
+              $(window).resize( function() {
+                $('span')
+                  .removeClass('ab')
+                  .css({ top: 0, left: 0 })
+              })
+            }
+          }
+        })
+    }
     }
   }
 
