@@ -2,7 +2,7 @@ $(document).ready( function() {
 
   if (window.mobilecheck()) {
     $('body').css('max-width', '1000px')
-    $('body').width($(window).width())
+    $('body').width($(window).width()*0.9)
   } else {
 
     $('#me').on({
@@ -23,7 +23,6 @@ $(document).ready( function() {
     var els = $('h1, h2, p');
 
     $.each(els, function(i, v) {
-
       var el = $(v);
       var html = el.html().trim();
       var new_html = "";
@@ -42,9 +41,27 @@ $(document).ready( function() {
         }
       }
       el.html(new_html)
-    } )
+    })
 
     var els = $('span');
+    var list = []
+
+    els.each( function(index, el) {
+      el = $(el)
+      list.push([el, el.position().top, el.position().left]);
+    })
+
+    //position absolute
+    $.each(list, function(index, v) {
+      var elem = v[0]
+      var top = v[1]
+      var left = v[2]
+      elem.addClass('ab')
+      elem.css({
+        top: top,
+        left: left
+      })
+    })
 
     var distance = function() {
       var direc = [1,-1]
@@ -63,15 +80,73 @@ $(document).ready( function() {
       return Math.random()*2
     }
 
+    var easing = function() {
+      return ""
+    }
+
+    var counter = 0;
+
+    $('.cover') .velocity({
+        opacity: 0,
+      }, {
+        duration:10000,
+        delay: 500,
+      })
+
     for (var i = 0, len = els.length; i < len; i++) {
-      var l = $(els[i]);
-      l
-      .velocity({ left: distance(), top: distance()}, 1500)
-      .velocity({ left: distance()*2, top: distance()*2, opacity: Math.random()}, 3000+Math.random()*3000)
-      .velocity({ left: distance(), top: distance()}, 3000+Math.random()*3000)
-      .velocity({ left: distance(), top: distance()}, 1000+Math.random()*1000)
-      .velocity({ left: distance(), top: distance()}, time(i))
-      .velocity({ left: 0, top:0, scale: 1, opacity: 1}, time(i)*2, 'cubic-bezier(.74,-0.85,.31,1.63)')
+      var ds = [
+        { x: distance()*4, y: distance()*2 },
+        { x: distance()*3, y: distance()*2 },
+        { x:distance()*2,  y: distance()*1.5 },
+        { x:distance(),    y: distance() },
+        { x: distance()/2, y: distance()/2  }
+      ]
+
+      $(els[i])
+      .velocity({
+        translateX: [ds[1].x, ds[0].x ],
+        translateY: [ds[1].y, ds[0].y ],
+      },{
+        duration: 1000+Math.random()*5000,
+      })
+
+      .velocity({
+        translateX: [ds[2].x, ds[1].x ],
+        translateY: [ds[2].y, ds[1].y ],
+      },{
+        duration: 1000+Math.random()*5000,
+      })
+
+      .velocity({
+        translateX: [ds[3].x, ds[2].x ],
+        translateY: [ds[3].y, ds[2].y ],
+      }, {
+        duration: 500+Math.random()*1500,
+      })
+
+      .velocity({
+        translateX: [ds[4].x, ds[3].x ],
+        translateY: [ds[4].y, ds[3].y ],
+      }, {
+        duration: time(i),
+      })
+
+      .velocity({
+        translateX: 0,
+        translateY:0,
+      }, {
+        duration: time(i)*2,
+        complete: function(element) {
+          counter++;
+          if (counter == 508) {
+            $(window).resize( function() {
+              $('span')
+                .removeClass('ab')
+                .css({ top: 0, left: 0 })
+            })
+          }
+        }
+      })
     }
   }
 
