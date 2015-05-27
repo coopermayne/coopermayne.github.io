@@ -1,8 +1,13 @@
 $(document).ready( function() {
 
-  if (false) {
-    $('body').css('max-width', '1000px')
-    $('body').width($(window).width()*0.9)
+  if (window.mobilecheck()) {
+    $('body').width($(window).width())
+    $('.cover') .velocity({
+      opacity: 0,
+    }, {
+      duration:500,
+      delay: 200,
+    })
   } else {
 
     $('#me').on({
