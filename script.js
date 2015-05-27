@@ -1,6 +1,6 @@
 $(document).ready( function() {
 
-  if (window.mobilecheck()) {
+  if (false) {
     $('body').css('max-width', '1000px')
     $('body').width($(window).width()*0.9)
   } else {
