@@ -1,14 +1,12 @@
 $(document).ready( function() {
 
   if (window.mobilecheck()) {
-
     $('.cover') .velocity({
       opacity: 0,
     }, {
       duration:500,
       delay: 200,
     })
-
   } else {
     $('body').css({'max-width': '500px'})
 
@@ -27,6 +25,8 @@ $(document).ready( function() {
       }
     })
 
+    //------------------------------------------------------------------------------------------------------------------------ 
+    //put a span around each character --- and position them absolutely (to optimize rendering)
     var els = $('h1, h2, p');
 
     $.each(els, function(i, v) {
@@ -70,6 +70,9 @@ $(document).ready( function() {
       })
     })
 
+    //end span and positioning
+    //------------------------------------------------------------------------------------------------------------------------ 
+
     var distance = function() {
       var direc = [1,-1]
       var base = 200
@@ -83,13 +86,9 @@ $(document).ready( function() {
       return 500 + base*i;
     }
 
-    var scale = function() {
-      return Math.random()*2
-    }
+    var scale = function() { return Math.random()*2 }
 
-    var easing = function() {
-      return ""
-    }
+    var easing = function() { return "" }
 
     var counter = 0;
 
@@ -168,7 +167,7 @@ $(document).ready( function() {
             }
           }
         })
-    } else {
+    } else if (choice==1) {
       for (var i = 0, len = els.length; i < len; i++) {
         var ds = [
           { x: distance()*4, y: distance()*2 },
@@ -224,6 +223,8 @@ $(document).ready( function() {
           }
         })
     }
+    } else {
+      console.log('other choice');
     }
   }
 
