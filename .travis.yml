@@ -1,11 +1,17 @@
-language: ruby
-rvm:
-  - 2.3.3
+language: node_js
+node_js:
+  - 7.5.0
 
-install: gem install jekyll -v 3.3.1
+install: 
+  - rvm install 2.2.3
+  - gem install jekyll -v 3.3.1
+  - npm install -g firebase-tools
 
 script:
   - jekyll build
+
+after_success:
+  - firebase deploy --token=${FIREBASE_API_TOKEN}
 
 branches:
   only:
@@ -15,5 +21,3 @@ branches:
     #- npm install -g firebase-tools
 
 
-  #after_success:
-    #- firebase deploy --token=${FIREBASE_API_TOKEN}
