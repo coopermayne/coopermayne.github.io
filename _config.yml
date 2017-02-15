@@ -30,5 +30,3 @@ exclude:
   - Gemfile.lock
   - firebase.json
   - database.rules.json
-
-sudo: false
