@@ -10,7 +10,7 @@ script:
   - jekyll build
 
 after_success:
-  - dpl --provider=firebase --token=${FIREBASE_API_TOKEN} --project=testcdn-1dd95
+  - dpl --provider=firebase --token=${FIREBASE_API_TOKEN} --project=testcdn-1dd95 --skip_cleanup
 
 branches:
   only:
