@@ -10,41 +10,9 @@
 
 	<h1>{{site.myname}}</h1>
 
-	<h2>projects</h2>
+  {% include projects.html %}
 
-  <p>
-  i designed and built the homepage for <a target='_blank' href='http://www.morphosis.com'>morphosis architects</a>.
-  </p>
-
-  <p>
-  <a target='_blank' href='http://coopermayne.github.io/turtles_in_angular/app/index.html#/'>l-systems</a>
-  is a angular app that helps you explore the beautiful world of Lindenmayer systems. 
-  <a target='_blank' href='https://github.com/coopermayne/turtles_in_angular'>github</a>
-  </p>
-
-  <p>
-  <a target='_blank' href='http://coopermayne.github.io/surrounding_game'>surrounding game</a>
-  is a puzzle that teaches people the rules of go. (note: work in progress)
-  <a target='_blank' href='https://github.com/coopermayne/surrounding_game'>github</a>
-  </p>
-
-  <p>
-  <a target='_blank' href='http://quiet-refuge-5124.herokuapp.com/'>wordweb</a>
-  is an interactive visualization of the etymological connections between english words.
-  <a target='_blank' href='https://github.com/coopermayne/wordweb'>github</a>
-  </p>
-
-  <p>
-  <a target='_blank' href='http://fast-bastion-9134.herokuapp.com/'>the world's story</a>
-  is a crowd sourced novel.
-  <a target='_blank' href='https://github.com/coopermayne/cloud_novel'>github</a>
-  </p>
-  <h2>contact and INFO</h2>
-  <p>
-	<a href="mailto:{{site.email}}?Subject=Hey" target="_top">coopermayne@gmail.com</a> <br />
-	<a href='http://www.github.com/{{site.github_username}}' target="_blank">github.com/coopermayne</a><br />
-  </p>
-  <img id='me' src="assets/me2.png">
+  {% include contact.html %}
 
 
   </body>
