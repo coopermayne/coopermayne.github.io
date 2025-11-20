@@ -116,6 +116,7 @@ import Contact from '../components/Contact.astro';
       };
 
       var counter = 0;
+      var totalSpans = els.length;
 
       $('.cover').velocity(
         {
@@ -229,7 +230,8 @@ import Contact from '../components/Contact.astro';
               easing: pickEasing(),
               complete: function (element) {
                 counter++;
-                if (counter == 508) {
+                if (counter == totalSpans) {
+                  $('span').removeClass('ab').css({ top: 0, left: 0 });
                   $(window).resize(function () {
                     $('span').removeClass('ab').css({ top: 0, left: 0 });
                   });
@@ -297,7 +299,8 @@ import Contact from '../components/Contact.astro';
                 duration: time(i),
                 complete: function (element) {
                   counter++;
-                  if (counter == 508) {
+                  if (counter == totalSpans) {
+                    $('span').removeClass('ab').css({ top: 0, left: 0 });
                     $(window).resize(function () {
                       $('span').removeClass('ab').css({ top: 0, left: 0 });
                     });
