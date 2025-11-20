@@ -24,8 +24,8 @@ import Contact from '../components/Contact.astro';
           opacity: 0,
         },
         {
-          duration: 500,
-          delay: 200,
+          duration: 250,
+          delay: 100,
         }
       );
     } else {
@@ -38,19 +38,19 @@ import Contact from '../components/Contact.astro';
               {
                 rotateZ: '10',
               },
-              100
+              50
             )
             .velocity(
               {
                 rotateZ: '-10',
               },
-              100
+              50
             )
             .velocity(
               {
                 rotateZ: '0deg',
               },
-              100
+              50
             );
         },
       });
@@ -111,8 +111,8 @@ import Contact from '../components/Contact.astro';
       };
 
       var time = function (i) {
-        var base = 2;
-        return 500 + base * i;
+        var base = 1;
+        return 250 + base * i;
       };
 
       var counter = 0;
@@ -122,8 +122,8 @@ import Contact from '../components/Contact.astro';
           opacity: 0,
         },
         {
-          duration: 8000,
-          delay: 1000,
+          duration: 4000,
+          delay: 500,
         }
       );
 
@@ -154,8 +154,8 @@ import Contact from '../components/Contact.astro';
               ],
             },
             {
-              delay: 1000,
-              duration: 3000,
+              delay: 500,
+              duration: 1500,
               easing: 'linear',
             }
           )
@@ -169,7 +169,7 @@ import Contact from '../components/Contact.astro';
               },
             },
             {
-              duration: 1000,
+              duration: 500,
               easing: pickEasing(),
             }
           )
@@ -183,8 +183,8 @@ import Contact from '../components/Contact.astro';
               },
             },
             {
-              delay: 300,
-              duration: 500,
+              delay: 150,
+              duration: 250,
               easing: pickEasing(),
             }
           )
@@ -198,8 +198,8 @@ import Contact from '../components/Contact.astro';
               },
             },
             {
-              delay: 300,
-              duration: 500,
+              delay: 150,
+              duration: 250,
               easing: pickEasing(),
             }
           )
@@ -213,8 +213,8 @@ import Contact from '../components/Contact.astro';
               },
             },
             {
-              delay: 300,
-              duration: 500,
+              delay: 150,
+              duration: 250,
               easing: pickEasing(),
             }
           )
@@ -224,8 +224,8 @@ import Contact from '../components/Contact.astro';
               translateY: 0,
             },
             {
-              delay: 300,
-              duration: 500,
+              delay: 150,
+              duration: 250,
               easing: pickEasing(),
               complete: function (element) {
                 counter++;
@@ -254,7 +254,7 @@ import Contact from '../components/Contact.astro';
                 translateY: [ds[1].y, ds[0].y],
               },
               {
-                duration: 1000 + Math.random() * 5000,
+                duration: 500 + Math.random() * 2500,
               }
             )
 
@@ -264,7 +264,7 @@ import Contact from '../components/Contact.astro';
                 translateY: [ds[2].y, ds[1].y],
               },
               {
-                duration: 1000 + Math.random() * 5000,
+                duration: 500 + Math.random() * 2500,
               }
             )
 
@@ -274,7 +274,7 @@ import Contact from '../components/Contact.astro';
                 translateY: [ds[3].y, ds[2].y],
               },
               {
-                duration: 500 + Math.random() * 1500,
+                duration: 250 + Math.random() * 750,
               }
             )
 
@@ -294,7 +294,7 @@ import Contact from '../components/Contact.astro';
                 translateY: 0,
               },
               {
-                duration: time(i) * 2,
+                duration: time(i),
                 complete: function (element) {
                   counter++;
                   if (counter == 508) {
