@@ -28,5 +28,4 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
-  - firebase.json
-  - database.rules.json
+  - netlify.toml

@@ -1,0 +1,14 @@
+[build]
+  command = "bundle exec jekyll build"
+  publish = "_site"
+
+# Ruby version for Netlify
+[build.environment]
+  RUBY_VERSION = "3.1"
+
+# Redirect rules - if you need any specific redirects, add them here
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
