@@ -1,0 +1,17 @@
+{
+  "name": "astro-temp",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.33",
+    "astro": "^5.16.0",
+    "jquery": "^3.7.1",
+    "velocity-animate": "^1.5.2"
+  }
+}
