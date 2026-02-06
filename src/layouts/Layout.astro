@@ -22,6 +22,13 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,12 +55,26 @@ const {
   body {
     font-family: var(--font-body);
     width: 90%;
+    max-width: 500px;
     margin: 20px auto 0 auto;
     margin-top: 5% !important;
+    color: #1a1a1a;
+    background: #fff;
   }
 
   h1, h2, h3 {
     font-family: var(--font-display);
+  }
+
+  a {
+    color: #2a5db0;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  a:hover {
+    border-bottom-color: #2a5db0;
   }
 
   #me {
@@ -74,12 +95,31 @@ const {
 
   .cover {
     pointer-events: none;
-    background: white;
+    background: #fff;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: #e0e0e0;
+      background: #1a1a1a;
+    }
+
+    a {
+      color: #6da3e8;
+    }
+
+    a:hover {
+      border-bottom-color: #6da3e8;
+    }
+
+    .cover {
+      background: #1a1a1a;
+    }
   }
 </style>
