@@ -1,152 +1,23 @@
----
-const projects = [
-  {
-    name: 'Police Misconduct Tracker',
-    description: 'Astro app for tracking and analyzing police misconduct data in civil rights cases.',
-    url: 'https://github.com/coopermayne/atstro-police-misconduct',
-    tech: 'JavaScript / Astro',
-  },
-  {
-    name: 'Document Generator',
-    description: 'Python tool for generating legal documents from templates — automates repetitive drafting.',
-    url: 'https://github.com/coopermayne/docx_template',
-    tech: 'Python',
-  },
-  {
-    name: 'A New Kind of Science',
-    description: 'Visual exploration of patterns that emerge from simple cellular automaton rules.',
-    url: 'https://github.com/coopermayne/new_kind_of_science',
-    tech: 'JavaScript',
-  },
-  {
-    name: 'PWA Game for Stella',
-    description: 'A progressive web app game built for a kid named Stella.',
-    url: 'https://github.com/coopermayne/PWA-Game-for-Stella',
-    tech: 'JavaScript',
-  },
-];
----
+<h2>bio</h2>
 
-<section class="bio-section" aria-label="About">
-  <h2>bio</h2>
-  <p>
-    used to make websites. now i practice civil rights law at
-    <a target="_blank" rel="noopener noreferrer" href="https://www.galipolaw.com/cooper-alison-mayne/">Law Offices of Dale K. Galipo</a>.
-  </p>
-</section>
+<p>
+  used to make websites. now i practice civil rights law at <a target="_blank" href="https://www.galipolaw.com/cooper-alison-mayne/">Law Offices of Dale K. Galipo</a>.
+</p>
 
-<section class="projects-section" aria-label="Projects">
-  <h2>projects</h2>
-  <ul class="project-list">
-    {projects.map((project) => (
-      <li class="project-card">
-        <a href={project.url} target="_blank" rel="noopener noreferrer">
-          <strong class="project-name">{project.name}</strong>
-          <span class="project-desc">{project.description}</span>
-          <span class="project-tech">{project.tech}</span>
-        </a>
-      </li>
-    ))}
-  </ul>
-</section>
+<h2>favorite words</h2>
 
-<section class="words-section" aria-label="Favorite words">
-  <h2>favorite words</h2>
-  <dl class="word-list">
-    <div class="word-entry">
-      <dt>cornobble</dt>
-      <dd>hit in the face with a fish</dd>
-    </div>
-    <div class="word-entry">
-      <dt>floccinaucinihilipilification</dt>
-      <dd>the action or habit of judging something to be worthless</dd>
-    </div>
-    <div class="word-entry">
-      <dt>sciography</dt>
-      <dd>the study of shadows</dd>
-    </div>
-    <div class="word-entry">
-      <dt>deipnosophist</dt>
-      <dd>a person who is adept at conversing at the dinner table</dd>
-    </div>
-  </dl>
-</section>
+<p>
+  <strong>cornobble:</strong> hit in the face with a fish
+</p>
 
-<style>
-  .bio-section,
-  .projects-section,
-  .words-section {
-    margin-bottom: 1rem;
-  }
+<p>
+  <strong>floccinaucinihilipilification:</strong> the action or habit of judging something to be worthless.
+</p>
 
-  /* Project cards */
-  .project-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-  }
+<p>
+  <strong>sciography:</strong> the study of shadows
+</p>
 
-  .project-card a {
-    display: block;
-    padding: 1rem 1.15rem;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .project-card a:hover {
-    border-color: var(--color-accent);
-    box-shadow: 0 2px 8px rgba(42, 90, 218, 0.08);
-  }
-
-  .project-card a:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-  }
-
-  .project-name {
-    display: block;
-    font-size: 1rem;
-    color: var(--color-accent);
-    margin-bottom: 0.25rem;
-  }
-
-  .project-desc {
-    display: block;
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-    margin-bottom: 0.35rem;
-  }
-
-  .project-tech {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    opacity: 0.7;
-  }
-
-  /* Favorite words — definition list */
-  .word-list {
-    margin-top: 0.5rem;
-  }
-
-  .word-entry {
-    margin-bottom: 0.65rem;
-  }
-
-  .word-entry dt {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  .word-entry dd {
-    margin-left: 0;
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-  }
-</style>
+<p>
+  <strong>deipnosophist:</strong> a person who is adept at conversing at the dinner table
+</p>
