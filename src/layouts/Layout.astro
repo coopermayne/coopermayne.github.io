@@ -5,9 +5,11 @@ interface Props {
 }
 
 const {
-  title = 'cooper mayne - web developer',
-  description = 'profile of a human being who makes websites sometimes'
+  title = 'cooper mayne - civil rights attorney & web developer',
+  description = 'Cooper Mayne — civil rights attorney at Law Offices of Dale K. Galipo and former web developer.'
 } = Astro.props;
+
+const siteUrl = 'https://coopermayne.github.io';
 ---
 
 <!DOCTYPE html>
@@ -22,45 +24,180 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={`${siteUrl}/me2.png`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div class="cover"></div>
-    <slot />
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="cover" aria-hidden="true"></div>
+    <main id="main-content">
+      <slot />
+    </main>
   </body>
 </html>
 
 <style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --color-text: #1a1a1a;
+    --color-text-muted: #555;
+    --color-accent: #2a5ada;
+    --color-accent-hover: #1a3fa0;
+    --color-bg: #fafaf9;
+    --color-border: #e0e0e0;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --max-width: 600px;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    width: 90%;
-    margin: 20px auto 0 auto;
-    margin-top: 5% !important;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.7;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 8vh 1.25rem 4rem;
   }
 
-  #me {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    height: 10%;
-    z-index: 2;
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
   }
 
-  span {
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin-bottom: 0.85rem;
+    font-size: 1rem;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.15s ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Skip link for keyboard accessibility */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 0 0 4px 4px;
+    z-index: 100;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Animation spans — keep relative by default */
+  .anim-char {
     position: relative;
+    display: inline-block;
   }
 
-  .ab {
+  .anim-char.ab {
     position: absolute;
   }
 
+  /* Cover overlay for intro animation */
   .cover {
     pointer-events: none;
-    background: white;
+    background: var(--color-bg);
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 10;
+  }
+
+  /* Profile photo */
+  .profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .profile-photo:hover {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    body {
+      padding-top: 5vh;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+    }
+
+    .profile-photo {
+      width: 64px;
+      height: 64px;
+    }
   }
 </style>
