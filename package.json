@@ -9,9 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@types/jquery": "^3.5.33",
     "astro": "^5.16.0",
-    "jquery": "^3.7.1",
     "velocity-animate": "^1.5.2"
   }
 }
